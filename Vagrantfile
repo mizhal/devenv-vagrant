@@ -39,7 +39,8 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--ioapic", "on"]
   end
 
-  config.vm.provision "shell", inline: 'localectl set-locale LANG=es_ES.utf8'
+  config.vm.provision "shell", inline: 'localectl set-locale LANG=es_ES.utf-8'
   config.vm.provision "docker"
   config.vm.provision "shell", path: "./install-utilities.sh"
+  config.vm.provision "shell", path: "./setup-keys.sh", privileged: false
 end

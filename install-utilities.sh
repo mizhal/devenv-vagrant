@@ -7,7 +7,9 @@ sudo apt-get install -y curl emacs mysql-client rsync nodejs npm supervisor nano
 sudo su
 
 ## idioma
-echo "LANGUAGE=es_ES.UTF-8" >> /etc/environment
+echo "LANGUAGE=es_ES.utf-8" >> /etc/environment
+echo "LANG=es_ES.utf-8" >> /etc/environment
+echo "localectl set-locale LANG=es_ES.utf-8" >> /etc/profile.d/keyboard.sh
 echo "gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'es')]\"" >> /etc/profile.d/keyboard.sh
 chmod ugo+x /etc/profile.d/keyboard.sh
 update-locale LANG=es_ES.UTF-8 LC_MESSAGES=POSIX LANGUAGE=es_ES.UTF-8
