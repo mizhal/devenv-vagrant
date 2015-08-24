@@ -1,0 +1,41 @@
+#!/bin/bash
+sudo apt-get install -y curl emacs mysql-client rsync nodejs npm supervisor nano
+
+# Shipyard Docker UI
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock shipyard/deploy start
+
+sudo su
+
+## idioma
+echo "LANGUAGE=es_ES.UTF-8" >> /etc/environment
+echo "gsettings set org.gnome.desktop.input-sources sources \"[('xkb', 'es')]\"" >> /etc/profile.d/keyboard.sh
+chmod ugo+x /etc/profile.d/keyboard.sh
+update-locale LANG=es_ES.UTF-8 LC_MESSAGES=POSIX LANGUAGE=es_ES.UTF-8
+locale-gen
+
+apt-get remove -y language-pack-en language-pack-gnome-en
+apt-get install -y language-pack-gnome-es language-pack-gnome-es-base firefox-locale-es gnome-control-center 
+apt-get install -y language-pack-es language-pack-es-base language-selector-common language-selector-gnome gksu
+
+### gnome-flashback
+apt-get install -y gnome-session-flashback
+echo "user-session=gnome-fallback" >> /etc/lightdm/lightdm.conf
+killall gnome-session
+service lightdm restart
+
+# Change vagrant user password
+echo "vagrant:123456" | chpasswd
+
+# Docker Service
+echo 'DOCKER_OPTS="-H=tcp://0.0.0.0:4243 ${DOCKER_OPTS}"' >> /etc/default/docker
+echo 'DOCKER_OPTS="-H=unix:///var/run/docker.sock ${DOCKER_OPTS}"' >> /etc/default/docker
+service docker restart
+
+### unity
+apt-get install -y unity-tweak-tool
+
+## CHROME
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+apt-get update
+apt-get install -y google-chrome-stable
