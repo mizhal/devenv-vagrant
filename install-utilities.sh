@@ -20,7 +20,7 @@ apt-get install -y language-pack-gnome-es language-pack-gnome-es-base firefox-lo
 apt-get install -y language-pack-es language-pack-es-base language-selector-common language-selector-gnome gksu
 
 ### gnome-flashback
-apt-get install -y gnome-session-flashback
+apt-get install -y gnome-session-flashback awesome awesome-extra
 echo "user-session=gnome-fallback" >> /etc/lightdm/lightdm.conf
 killall gnome-session
 service lightdm restart
