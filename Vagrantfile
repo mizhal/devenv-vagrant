@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: ip
   config.vm.hostname = "www.alvi.com"
   config.hostsupdater.aliases = ["rails.alvi.com", "shipyard.alvi.com", "php.alvi.com", "node.alvi.com"]
+  config.puppet_install.puppet_version = "3.7.2"
 
   config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -43,4 +44,13 @@ Vagrant.configure(2) do |config|
   config.vm.provision "docker"
   config.vm.provision "shell", path: "./install-utilities.sh"
   config.vm.provision "shell", path: "./setup-keys.sh", privileged: false
+
+  ## Provisioner: Puppet
+  ### anyadir la clave para instalar RVM
+  config.vm.provision "shell", inline: "curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -"
+  config.vm.provision "puppet" do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.module_path = "puppet/modules"
+    puppet.manifest_file = "site.pp"
+  end
 end

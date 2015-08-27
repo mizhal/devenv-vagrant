@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo apt-get install -y curl emacs mysql-client rsync nodejs npm supervisor nano
+sudo apt-get install -y curl emacs mysql-client rsync supervisor nano
 
 # Shipyard Docker UI
 # docker run --rm -v /var/run/docker.sock:/var/run/docker.sock shipyard/deploy start
@@ -7,6 +7,8 @@ sudo apt-get install -y curl emacs mysql-client rsync nodejs npm supervisor nano
 sudo su
 
 ## idioma
+LANGUAGE=es_ES.utf-8
+LC_ALL=es_ES.utf-8
 echo "LANGUAGE=es_ES.utf-8" >> /etc/environment
 echo "LANG=es_ES.utf-8" >> /etc/environment
 echo "localectl set-locale LANG=es_ES.utf-8" >> /etc/profile.d/keyboard.sh
@@ -32,6 +34,9 @@ echo "vagrant:123456" | chpasswd
 echo 'DOCKER_OPTS="-H=tcp://0.0.0.0:4243 ${DOCKER_OPTS}"' >> /etc/default/docker
 echo 'DOCKER_OPTS="-H=unix:///var/run/docker.sock ${DOCKER_OPTS}"' >> /etc/default/docker
 service docker restart
+
+## Dependencias para rbenv
+apt-get install -y libssl-dev zlib1g-dev libreadline-dev
 
 ### unity
 apt-get install -y unity-tweak-tool
