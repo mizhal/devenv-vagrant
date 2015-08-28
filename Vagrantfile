@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.network "private_network", ip: ip
   config.vm.hostname = "www.alvi.com"
   config.hostsupdater.aliases = ["rails.alvi.com", "shipyard.alvi.com", "php.alvi.com", "node.alvi.com"]
-  config.puppet_install.puppet_version = "3.7.2"
+  config.puppet_install.puppet_version = "3.7.5"
 
   config.vm.network "forwarded_port", guest: 80, host: 80
   config.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -40,17 +40,26 @@ Vagrant.configure(2) do |config|
     v.customize ["modifyvm", :id, "--ioapic", "on"]
   end
 
-  config.vm.provision "shell", inline: 'localectl set-locale LANG=es_ES.utf-8'
   config.vm.provision "docker"
-  config.vm.provision "shell", path: "./install-utilities.sh"
-  config.vm.provision "shell", path: "./setup-keys.sh", privileged: false
+  config.vm.provision "utilities_and_language", type: "shell" do |pro|
+    pro.path = "./install-utilities.sh"
+  end
 
   ## Provisioner: Puppet
   ### anyadir la clave para instalar RVM
-  config.vm.provision "shell", inline: "curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -"
+  config.vm.provision "RVM keys", type: "shell" do |pro|
+    pro.inline = "curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -"
+  end
+
   config.vm.provision "puppet" do |puppet|
     puppet.manifests_path = "puppet/manifests"
     puppet.module_path = "puppet/modules"
     puppet.manifest_file = "site.pp"
   end
+
+  config.vm.provision "ssh_keys", type: "shell" do |ssh|
+    ssh.path = "./setup-keys.sh"
+    ssh.privileged = false
+  end
+
 end
