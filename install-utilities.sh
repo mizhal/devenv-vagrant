@@ -7,6 +7,7 @@ sudo apt-get install -y curl emacs mysql-client rsync supervisor nano
 sudo su
 
 ## idioma
+localectl set-locale LANG=es_ES.utf-8
 LANGUAGE=es_ES.utf-8
 LC_ALL=es_ES.utf-8
 echo "LANGUAGE=es_ES.utf-8" >> /etc/environment
