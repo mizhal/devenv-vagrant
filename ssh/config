@@ -1,0 +1,8 @@
+Host github.com
+    IdentityFile ~/.ssh/keys/vagrant-alvi2
+Host ArchivoGeneral
+	HostName 192.168.6.1
+	Port 22
+	User Mizhal
+	IdentityFile ~/.ssh/keys/mizhal-AG
+
