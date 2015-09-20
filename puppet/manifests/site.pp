@@ -30,7 +30,7 @@ class { 'nodejs':
   repo_url_suffix => 'node_0.12'
 }
 class { '::rvm': }
-rvm::system_user {rubyserver: ; deploy: ;}
+rvm::system_user {rubyserver: ; deploy: ; vagrant: ;}
 # https://forge.puppetlabs.com/stankevich/python
 class { 'python' :
   version    => 'system',
