@@ -62,4 +62,8 @@ Vagrant.configure(2) do |config|
     ssh.privileged = false
   end
 
+  config.vm.provision "dockers", type: "shell" do |dock|
+    dock.path = "./install-docker-images.sh"
+  end
+
 end
