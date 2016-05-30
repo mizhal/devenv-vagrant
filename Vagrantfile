@@ -45,6 +45,10 @@ Vagrant.configure(2) do |config|
     pro.path = "./install-utilities.sh"
   end
 
+  config.vm.provision "elixir_phoenix", type: "shell" do |pro|
+    pro.path = "./elixir-phoenix.sh"
+  end
+
   ## Provisioner: Puppet
   ### anyadir la clave para instalar RVM
   config.vm.provision "RVM keys", type: "shell" do |pro|
