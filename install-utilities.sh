@@ -47,13 +47,3 @@ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add
 sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 apt-get update
 apt-get install -y google-chrome-stable
-
-## Elixir & phoenix
-
-# erlang solutions repo
-wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
-sudo apt-get update
-sudo apt-get install -y esl-erlang
-sudo apt-get install -y elixir
-mix local.hex --force
-mix archive.install --force https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
