@@ -2,22 +2,6 @@ group { "ruby":
   ensure => present,
   gid => 666
 }
-group { "rvm":
-  ensure => present,
-  gid => 667
-}
-user { "deploy":
-  ensure => "present",
-  managehome => true,
-  shell => "/bin/bash",
-  groups => ["rvm", "ruby"]
-}
-user { "rubyserver":
-  ensure => "present",
-  managehome => true,
-  shell => "/bin/bash",
-  groups => ["rvm", "ruby"]
-}
 user { "nodeserver":
   ensure => "present",
   managehome => true

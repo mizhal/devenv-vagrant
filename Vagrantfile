@@ -16,7 +16,7 @@ Vagrant.configure(2) do |config|
   config.hostsupdater.aliases = ["rails.alvi.com", "shipyard.alvi.com", "php.alvi.com", "node.alvi.com"]
   config.puppet_install.puppet_version = "3.7.5"
 
-  config.vm.network "forwarded_port", guest: 80, host: 80
+  config.vm.network "forwarded_port", guest: 80, host: 81
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   config.vm.network "forwarded_port", guest: 9000, host: 9001
   config.vm.network "forwarded_port", guest: 5858, host: 5859
@@ -66,8 +66,8 @@ Vagrant.configure(2) do |config|
     ssh.privileged = false
   end
 
-  config.vm.provision "dockers", type: "shell" do |dock|
-    dock.path = "./install-docker-images.sh"
-  end
+  #config.vm.provision "dockers", type: "shell" do |dock|
+  #  dock.path = "./install-docker-images.sh"
+  #end
 
 end
