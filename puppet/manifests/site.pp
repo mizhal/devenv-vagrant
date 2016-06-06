@@ -30,7 +30,37 @@ rvm_system_ruby {
   'ruby-1.9.3':
     ensure      => 'present',
     default_use => false;
-  'ruby-2.0':
+  'ruby-2.3.1':
     ensure      => 'present',
     default_use => true;
+}
+
+rvm_gemset {
+  'ruby-1.8.7-p334@starter':
+    ensure  => present,
+    require => Rvm_system_ruby['ruby-1.8.7-p334'];
+  'ruby-1.9.3@starter':
+    ensure  => present,
+    require => Rvm_system_ruby['ruby-1.9.3'];
+  'ruby-2.3.1@starter':
+    ensure  => present,
+    require => Rvm_system_ruby['ruby-2.3.1'];
+}
+
+rvm_gem {
+  'rails-2.3.8':
+    name         => 'rails',
+    ruby_version => 'ruby-1.8.7-p334',
+    ensure       => '2.3.8',
+    require      => Rvm_system_ruby['ruby-1.8.7-p334'];
+  'rails-3.2.22':
+    name         => 'rails',
+    ruby_version => 'ruby-1.9.3',
+    ensure       => '3.2.22',
+    require      => Rvm_system_ruby['ruby-1.9.3'];
+  'rails-4.2.6':
+    name         => 'rails',
+    ruby_version => 'ruby-2.3.1',
+    ensure       => '4.2.6',
+    require      => Rvm_system_ruby['ruby-2.3.1'];
 }
