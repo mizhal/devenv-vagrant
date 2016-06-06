@@ -70,4 +70,8 @@ Vagrant.configure(2) do |config|
   #  dock.path = "./install-docker-images.sh"
   #end
 
+  config.vm.provision "sublime_text", type: "shell" do |sub|
+    sub.path = "./install-sublime.sh"
+  end
+
 end
