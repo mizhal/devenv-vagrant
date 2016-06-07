@@ -17,6 +17,7 @@ Vagrant.configure(2) do |config|
   config.puppet_install.puppet_version = "3.7.5"
 
   config.vm.network "forwarded_port", guest: 80, host: 81
+  config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   config.vm.network "forwarded_port", guest: 9000, host: 9001
   config.vm.network "forwarded_port", guest: 5858, host: 5859
@@ -72,6 +73,11 @@ Vagrant.configure(2) do |config|
 
   config.vm.provision "sublime_text", type: "shell" do |sub|
     sub.path = "./install-sublime.sh"
+  end
+
+  config.vm.provision "git_conf", type: "file" do |gu|
+    gu.source = "_gitconfig"
+    gu.destination = "~/.gitconfig"
   end
 
 end
