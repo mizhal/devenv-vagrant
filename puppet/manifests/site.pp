@@ -64,3 +64,5 @@ rvm_gem {
     ensure       => '4.2.6',
     require      => Rvm_system_ruby['ruby-2.3.1'];
 }
+
+class { 'redis':; }
