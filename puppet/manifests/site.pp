@@ -67,6 +67,9 @@ rvm_gem {
   'ruby-2.3.1@starter/rails':
     ensure       => '4.2.6',
     require      => Rvm_gemset['ruby-2.3.1@starter'];
+  'ruby-2.3.1/rails':
+    ensure       => '4.2.6',
+    require      => Rvm_system_ruby['ruby-2.3.1'];
 }
 
 class { 'redis':; }
