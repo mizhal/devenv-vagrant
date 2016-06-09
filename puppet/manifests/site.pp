@@ -45,6 +45,9 @@ rvm_gemset {
   'ruby-2.3.1@starter':
     ensure  => present,
     require => Rvm_system_ruby['ruby-2.3.1'];
+  'ruby-2.3.1@starter-2':
+    ensure  => present,
+    require => Rvm_system_ruby['ruby-2.3.1'];
 }
 
 rvm_gem {
@@ -58,11 +61,12 @@ rvm_gem {
     ruby_version => 'ruby-1.9.3',
     ensure       => '3.2.22',
     require      => Rvm_system_ruby['ruby-1.9.3'];
-  'rails-4.2.6':
-    name         => 'rails',
-    ruby_version => 'ruby-2.3.1',
+  'ruby-2.3.1@starter-2/rails':
+    ensure       => '4.1.15',
+    require      => Rvm_gemset['ruby-2.3.1@starter-2'];    
+  'ruby-2.3.1@starter/rails':
     ensure       => '4.2.6',
-    require      => Rvm_system_ruby['ruby-2.3.1'];
+    require      => Rvm_gemset['ruby-2.3.1@starter'];
 }
 
 class { 'redis':; }
