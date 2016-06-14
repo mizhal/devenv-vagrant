@@ -80,4 +80,12 @@ Vagrant.configure(2) do |config|
     gu.destination = "~/.gitconfig"
   end
 
+  config.vm.provision "java", type: "shell" do |j|
+    j.path = "./install-java.sh"
+  end
+
+  config.vm.provision "uml", type: "shell" do |uml|
+    uml.path= "./uml-utils.sh"
+  end
+
 end
