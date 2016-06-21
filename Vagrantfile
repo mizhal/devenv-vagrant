@@ -88,4 +88,8 @@ Vagrant.configure(2) do |config|
     uml.path= "./uml-utils.sh"
   end
 
+  config.vm.provision "docker_images", type: "shell" do |di|
+    di.path = "./install-docker-images.sh"
+  end
+
 end

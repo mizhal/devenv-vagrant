@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ## uml tools
 
 sudo apt-get install -y graphviz imagemagick
