@@ -10,7 +10,6 @@ ram      = '4096'
 Vagrant.configure(2) do |config|
 
   config.vm.box = box
-  config.vm.hostname = hostname
   config.vm.network "private_network", ip: ip
   config.vm.hostname = "www.alvi.com"
   config.hostsupdater.aliases = ["rails.alvi.com", "shipyard.alvi.com", "php.alvi.com", "node.alvi.com"]
