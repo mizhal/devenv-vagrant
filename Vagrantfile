@@ -91,4 +91,9 @@ Vagrant.configure(2) do |config|
     di.path = "./install-docker-images.sh"
   end
 
+  config.vm.provision "git-branch-bash", type: "file" do |gbb|
+    gbb.source = "./_bash_profile"
+    gbb.destination = "~/.bash_profile"
+  end
+
 end
