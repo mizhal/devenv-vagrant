@@ -33,6 +33,9 @@ rvm_system_ruby {
   'ruby-2.3.1':
     ensure      => 'present',
     default_use => true;
+  'ruby-2.4.1':
+    ensure      => 'present',
+    default_use => false;
 }
 
 rvm_gemset {
@@ -48,6 +51,9 @@ rvm_gemset {
   'ruby-2.3.1@starter-2':
     ensure  => present,
     require => Rvm_system_ruby['ruby-2.3.1'];
+  'ruby-2.4.1@starter':
+    ensure => present,
+    require => Rvm_system_ruby['ruby-2.4.1'];
 }
 
 rvm_gem {
@@ -70,6 +76,9 @@ rvm_gem {
   'ruby-2.3.1/rails':
     ensure       => '4.2.6',
     require      => Rvm_system_ruby['ruby-2.3.1'];
+  'ruby-2.4.1/rails':
+    ensure       => '5.1.2',
+    require      => Rvm_system_ruby['ruby-2.4.1'];
 }
 
 class { 'redis':; }

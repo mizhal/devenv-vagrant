@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.hostname = "www.alvi.com"
   config.hostsupdater.aliases = ["rails.alvi.com", "shipyard.alvi.com", "php.alvi.com", "node.alvi.com"]
   config.puppet_install.puppet_version = "3.7.5"
-
+  
   config.vm.network "forwarded_port", guest: 80, host: 81
   config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.vm.network "forwarded_port", guest: 8080, host: 8080
